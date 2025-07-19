@@ -1,0 +1,50 @@
+<div class="center-container">
+  <div class="radial-bg"></div>
+  <mat-card class="login-card">
+    <div class="card-content">
+      <div class="login-form-side">
+         <div class="headline">Welcome to MyRentalApp</div>
+         <br>
+               
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()" autocomplete="off">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" formControlName="email" placeholder="Enter your email" />
+            <div class="error" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+              {{ getEmailError() }}
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="password-wrapper">
+              <input id="password" [type]="hide ? 'password' : 'text'" formControlName="password" placeholder="Enter your password" />
+              <button type="button" class="eye-btn" (click)="hide = !hide" tabindex="-1" aria-label="Show/Hide password">
+                <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+            </div>
+            <div class="error" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+              {{ getPasswordError() }}
+            </div>
+          </div>
+          
+          <div class="error-message" *ngIf="loginError">
+            {{ loginError }}
+          </div>
+          
+          <button class="submit-button cta" type="submit">Sign In</button>
+        </form>
+        
+        <div class="signup-link">
+          <p>Don't have an account? <a (click)="goToSignup()">Create one</a></p>
+        </div>
+      </div>
+      
+      <div class="login-image-side">
+        <div class="illustration-glow">
+          <img src="assets/images/rental-illustration.svg" alt="Rental Illustration" />
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

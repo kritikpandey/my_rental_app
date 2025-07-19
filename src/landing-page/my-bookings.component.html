@@ -1,0 +1,86 @@
+<div class="bookings-container">
+  <div class="radial-bg"></div>
+  <div class="main-bookings-card">
+    <div class="header-section">
+      @if(!isDirectNavigation){
+      <button class="back-btn" (click)="goBack()">
+        <span>←</span> Back to Properties
+      </button>}
+      <h1 class="page-title">My Bookings</h1>
+    </div>
+
+    <div class="summary-cards">
+      <div class="summary-card">
+        <div class="summary-icon">
+          <img src="assets/icons/bookingCal.svg" alt="Calendar"  />
+        </div>
+        <div class="summary-content">
+          <div class="summary-number">{{ bookings.length }}</div>
+          <div class="summary-label">Total Bookings</div>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-icon">
+          <img src="assets/icons/houseBooking.svg" alt="House" />
+        </div>
+        <div class="summary-content">
+          <div class="summary-number">{{ totalDays }}</div>
+          <div class="summary-label">Total Days</div>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-icon">
+          <img src="assets/icons/money.svg" alt="Money" />
+        </div>
+        <div class="summary-content">
+          <div class="summary-number">₹{{ totalSpent.toLocaleString() }}</div>
+          <div class="summary-label">Total Spent</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bookings-section">
+      <h2 class="section-title">Your Booking History</h2>
+      
+      <div class="bookings-list" *ngIf="bookings.length > 0; else noBookings">
+        <div class="booking-card" *ngFor="let booking of bookings">
+          <div class="booking-image">
+            <img [src]="booking.propertyImage" [alt]="booking.propertyTitle" />
+            <div class="booking-status" [style.background-color]="getStatusColor(booking.status)">
+              {{ booking.status }}
+            </div>
+          </div>
+          <div class="booking-details">
+            <h3 class="booking-title">{{ booking.propertyTitle }}</h3>
+            <p class="booking-description">{{ booking.propertyDescription }}</p>
+            <div class="booking-info">
+              <div class="info-item">
+                <span class="info-label">Booking Date:</span>
+                <span class="info-value">{{ getFormattedDate(booking.bookingDate) }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Duration:</span>
+                <span class="info-value">{{ booking.days }} day{{ booking.days > 1 ? 's' : '' }}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Amount:</span>
+                <span class="info-value amount">₹{{ booking.totalAmount.toLocaleString() }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #noBookings>
+        <div class="no-bookings">
+          <div>
+            <img src="assets/icons/noBookings.svg" alt="No Bookings" class="booking_image" />
+          </div>
+          <h3>No Bookings Yet</h3>
+          <p>You haven't made any bookings yet. Start exploring our properties!</p>
+          <button class="explore-btn" (click)="goBack()">Explore Properties</button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,19 @@
+<div class="popup-backdrop">
+  <div class="popup-modal">
+    <h2>Thank you for your booking!</h2>
+    <p>You have successfully booked:</p>
+    <div class="popup-property">
+      <strong>{{ property?.title }}</strong>
+      <div class="popup-days">for <b>{{ days }}</b> day{{ days > 1 ? 's' : '' }}</div>
+    </div>
+    <div class="popup-amount">
+      <span>Total Amount:</span>
+      <span class="amount">{{ amount }}</span>
+    </div>
+    <p>We hope you enjoy your stay. A confirmation will be sent to your email.</p>
+    <div class="popup-actions">
+      <button class="view-bookings-btn" (click)="viewBookings.emit()">View My Bookings</button>
+      <div class="redirect-message">Redirecting in {{ countdown }} seconds...</div>
+    </div>
+  </div>
+</div> 
