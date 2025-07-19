@@ -75,3 +75,4 @@ myRentalApp/
 ```bash
 ng build --prod
 ```
+- [Usage Guide and Features](Usage_guide_and_Features.md)
