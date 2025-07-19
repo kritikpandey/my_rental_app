@@ -1,0 +1,91 @@
+<div class="center-container">
+  <div class="radial-bg"></div>
+  
+  <!-- Header Navigation -->
+  <div class="header-navigation">
+    <div class="nav-tabs">
+      <div class="nav-tab active">
+        <mat-icon>home</mat-icon>
+        <span>Properties</span>
+      </div>
+      <div class="nav-tab" (click)="goToMyBookings()">
+        <mat-icon>book</mat-icon>
+        <span>My Bookings</span>
+      </div>
+    </div>
+    
+    <!-- User Dropdown -->
+    <div class="user-dropdown-container">
+      <div class="user-circle" (click)="toggleUserDropdown()">
+        <span class="user-initial">{{ getUserInitial() }}</span>
+      </div>
+      <div class="dropdown-menu" *ngIf="showUserDropdown">
+        <div class="dropdown-item" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="main-property-card">
+    <div class="header-section">
+      <div class="welcome-text">
+        <div class="headline">Welcome to MyRentalApp!</div>
+        <div class="subtext">Find your perfect rental property. Here are some available properties you can rent:</div>
+      </div>
+      <div class="currency-row">
+        <label for="currency">Show prices in:</label>
+        <select id="currency" [(ngModel)]="selectedCurrency">
+          <option *ngFor="let c of currencies" [value]="c">{{c}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="property-card-grid">
+      <div class="property-card" *ngFor="let property of properties">
+        <img class="property-image" [src]="property.image" [alt]="property.title" />
+        <div class="property-details">
+          <h2 class="property-title">{{ property.title }}</h2>
+          <p class="property-desc">{{ property.description }}</p>
+          <div class="date-range-row">
+            <div class="date-input-group">
+              <label>Check-in:</label>
+              <input 
+                type="date" 
+                [min]="getTodayDate()"
+                [(ngModel)]="property.checkInDate"
+                (change)="calculateDays(property)"
+                class="date-input"
+              />
+            </div>
+            <div class="date-input-group">
+              <label>Check-out:</label>
+              <input 
+                type="date" 
+                [min]="property.checkInDate || getTodayDate()"
+                [(ngModel)]="property.checkOutDate"
+                (change)="calculateDays(property)"
+                class="date-input"
+              />
+            </div>
+          </div>
+          <div class="days-display" *ngIf="property.days > 0">
+            <span class="days-text">{{ property.days }} Day{{property.days > 1 ? 's' : ''}}</span>
+          </div>
+          <button class="rent-btn" (click)="openBooking(property)" [disabled]="!property.checkInDate || !property.checkOutDate || property.days <= 0">
+            Rent for {{property.days}} Day{{property.days > 1 ? 's' : ''}} - {{ getPrice(property) }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-booking-popup
+    *ngIf="showBooking"
+    [property]="selectedProperty"
+    [days]="selectedDays"
+    [amount]="selectedAmount"
+    [currency]="selectedCurrency"
+    (close)="closeBooking()"
+    (viewBookings)="viewBookings()"
+  ></app-booking-popup>
+</div>
