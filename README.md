@@ -1,27 +1,77 @@
-# MyRentalApp
+#MyRentalApp - Property Rental Management System
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.3.
+A modern, responsive Angular-based web application for property rental management with user authentication, booking system, and real-time date range selection.
+## 📁 Project Structure
 
-## Development server
+```
+myRentalApp/
+├── src/
+│   ├── app/
+│   │   ├── auth/
+│   │   │   ├── signup/
+│   │   │   │   ├── signup.component.html
+│   │   │   │   ├── signup.component.css
+│   │   │   │   └── signup.component.ts
+│   │   │   ├── login/
+│   │   │   │   ├── login.component.html
+│   │   │   │   ├── login.component.css
+│   │   │   │   └── login.component.ts
+│   │   │   └── auth.service.ts
+│   │   ├── landing-page/
+│   │   │   ├── landing-page.component.html
+│   │   │   ├── landing-page.component.css
+│   │   │   ├── landing-page.component.ts
+│   │   │   ├── booking-popup.component.html
+│   │   │   ├── booking-popup.component.css
+│   │   │   ├── booking-popup.component.ts
+│   │   │   ├── data-service.service.ts
+│   │   │   ├── data-service.service.specs.ts
+│   │   │   ├── my-bookings.component.html
+│   │   │   ├── my-bookings.component.css
+│   │   │   └── my-bookings.component.ts
+│   │   ├── app-routing.module.ts
+│   │   ├── app.module.ts
+│   │   └── app.component.ts
+│   ├── assets/
+│   │   └── icons/
+│   │       ├── calendar.svg
+│   │       ├── house.svg
+│   │       ├── money.svg
+│   │       └── booking-list.svg
+│   └── environments/
+├── package.json
+├── angular.json
+└── README.md
+```
+## 🚀 Installation & Setup
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Prerequisites
+- Node.js (v16 or higher)
+- npm (v8 or higher)
+- Angular CLI (v15 or higher)
 
-## Code scaffolding
+### Installation Steps
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd myRentalApp
+   ```
 
-## Build
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+3. **Start development server**
+   ```bash
+   ng serve
+   ```
 
-## Running unit tests
+4. **Open application**
+   Navigate to `http://localhost:4200` in your browser
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Build for Production
+```bash
+ng build --prod
+```
